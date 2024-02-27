@@ -10,11 +10,31 @@
     <name>tic-tac-toe</name>
     <packaging>war</packaging>
 
+    <developers>
+        <developer>
+            <name>Vadim Dubovskiy</name>
+            <email>Vadim_milo.net@mail.ru</email>
+            <url>https://github.com/Vadim23232323?tab=repositories</url>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>18</maven.compiler.target>
         <maven.compiler.source>18</maven.compiler.source>
     </properties>
+
+        <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-dependencies</artifactId>
+                        <version>3.2.2</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
 
     <dependencies>
         <dependency>
