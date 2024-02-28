@@ -1,9 +1,11 @@
+<%@ page import="com.tictactoe.Sign" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="static/main.css" rel="stylesheet">
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="<c:url value="/static/jquery-3.6.0.min.js"/>"></script>
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
@@ -25,8 +27,35 @@
         <td onclick="window.location='/logic?click=8'">${data.get(8).getSign()}</td>
     </tr>
 </table>
-<script>
+<hr>
+<c:set var="CROSSES" value="<%=Sign.CROSS%>"/>
+<c:set var="NOUGHTS" value="<%=Sign.NOUGHT%>"/>
 
+<c:if test="${winner == CROSSES}">
+    <h1>CROSSES WIN!</h1>
+    <button onclick="restart()">Start again</button>
+</c:if>
+<c:if test="${winner == NOUGHTS}">
+    <h1>NOUGHTS WIN!</h1>
+    <button onclick="restart()">Start again</button>
+</c:if>
+<c:if test="${draw}">
+    <h1>IT'S A DRAW</h1>
+    <br>
+    <button onclick="restart()">Start again</button>
+</c:if>
+<script>
+    function restart() {
+        $.ajax({
+            url: '/restart',
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            async: false,
+            success: function () {
+                location.reload();
+            }
+        });
+    }
 </script>
 
 </body>
